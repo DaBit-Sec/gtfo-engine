@@ -1,0 +1,18 @@
+#!/bin/bash
+DB="/home/dabit/Security/Tools/gtfo-engine/data/db.json"
+LOGFILE="/home/dabit/Security/logs/exploits.log"
+
+SELECTED=$(jq -r '.[].binary' "$DB" | fzf --prompt="Binario > " --height=40% --reverse --border)
+[ -z "$SELECTED" ] && exit 0
+
+FUNC=$(jq -r ".[] | select(.binary==\"$SELECTED\") | .functions | keys[]" "$DB" | fzf --prompt="Función > " --height=20% --reverse --border)
+[ -z "$FUNC" ] && exit 0
+
+PAYLOAD=$(jq -r ".[] | select(.binary==\"$SELECTED\") | .functions.\"$FUNC\"[].code" "$DB" | fzf --prompt="Payload > " --height=40% --reverse --border)
+
+if [ -n "$PAYLOAD" ]; then
+    echo -e "\n[+] Payload copiado al portapapeles."
+    echo "$PAYLOAD" | xclip -selection clipboard
+    # Registrar en bitácora
+    echo "$(date '+%Y-%m-%d %H:%M:%S') | $SELECTED | $FUNC | $(echo "$PAYLOAD" | head -n 1)..." >> "$LOGFILE"
+fi

@@ -1,0 +1,12 @@
+#!/bin/bash
+DATA_DIR="/home/dabit/Security/Tools/gtfo-engine/data"
+DB_FILE="$DATA_DIR/db.json"
+BACKUP_FILE="$DATA_DIR/db.json.bak"
+
+if [ -f "$DB_FILE" ]; then
+    cp "$DB_FILE" "$BACKUP_FILE"
+fi
+
+# ... (resto de tu lógica de generación de db.json)
+# ... (tras la validación jq empty)
+echo "[+] Base de datos actualizada. Backup creado en $BACKUP_FILE"

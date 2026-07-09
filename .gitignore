@@ -1,0 +1,9 @@
+# Logs y Búsquedas
+data/db.json
+data/*.bak
+logs/
+
+# Temporales
+/tmp/
+*.swp
+.DS_Store
