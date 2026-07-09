@@ -16,6 +16,28 @@ cd gtfo-engine
 # Asegúrate de ejecutar el sync inicial
 ./bin/gtfo-sync
 ```
+## ⚙️ Dependencias
+Para el correcto funcionamiento de `gtfo-engine`, asegúrate de tener instaladas las siguientes herramientas:
+
+* **[jq](https://jqlang.github.io/jq/):** Procesamiento y validación JSON.
+* **[fzf](https://github.com/junegunn/fzf):** Motor de búsqueda difusa (*fuzzy finder*).
+* **[xclip](https://github.com/astrand/xclip):** Integración con el portapapeles.
+* **[git](https://git-scm.com/):** Control de versiones.
+
+### Instalación de dependencias según tu distribución:
+
+**Debian / Ubuntu / Kali / Parrot:**
+```bash
+sudo apt update && sudo apt install jq fzf xclip git -y
+```
+**Arch Linux y derivados**
+```bash
+sudo pacman -S jq fzf xclip git
+```
+Si usas un helper como ```yay```, el comando es equivalente:
+```
+yay -S jq fzf xclip git
+```
 ## 📋 Componentes
 
     gtfo: Interfaz de consulta rápida. Uso: go (alias recomendado).
